@@ -32,13 +32,71 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license) {
+  const licenseBadge = renderLicenseBadge(license);
+  const licenseLink = renderLicenseLink(license);
+
+  if (licenseBadge && licenseLink) {
+    return `## License
+    This project is licensed under the ${license} license.  
+    For more information, please refer to the ${licenseLink}.`;
+  } else {
+    return '';
+  }
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ## Description
 
-`;
+  ${data.description}
+
+  ## Table of Contents
+
+  - [Installation](#installation)
+  
+  - [Usage](#usage)
+  
+  - [License](#license)
+
+  - [Contributing](#installation)
+
+  - [Tests](#tests)
+
+  - [Questions](#questions)
+
+  ## Installation
+
+  To install necessary dependencies, run the following command:
+
+    ${data.install}
+
+  ## Usage
+
+    ${data.usage}
+
+  Screen-share video of the README Generator Application:
+
+    [![readme-generator]
+
+  ${renderLicenseSection(data.license)}
+
+    ${data.license}
+
+  ## Contributing
+
+    ${data.contribute}
+
+  ## Tests
+
+    To run tests, run the following command:
+
+    ${data.test}
+
+  ## Questions
+
+    If you have any questions about the repository, open an issue or contact me directly at ${data.email}. You can find more of my work at [${data.username}](https://github.com/${data.username}).`;
 }
 
 module.exports = generateMarkdown;
